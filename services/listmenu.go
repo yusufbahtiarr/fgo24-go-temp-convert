@@ -6,7 +6,6 @@ import (
 	"fgo-go-temp-convert/utils"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func ListMenu(){
@@ -16,11 +15,13 @@ Data History Convert Temperature Celcius
 	for i, convert := range data.Temps {
 		fmt.Printf("%d. Celcius ke %s : %v\n", i+1, convert.Name, convert.Result)
 	}
+	if len(data.Temps) < 1 {
+		fmt.Println("Data Masih Kosong")
+	}
 
 	fmt.Print("\nPress enter to go back...")
 	reader := bufio.NewReader(os.Stdin)
-	input, _ := reader.ReadString('\n')
-	input = strings.TrimSpace(input)
+	reader.ReadString('\n')
 	utils.Clear()
 	return
 

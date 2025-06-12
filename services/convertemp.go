@@ -3,6 +3,9 @@ package services
 import (
 	"bufio"
 	"fgo-go-temp-convert/calculate"
+	"fgo-go-temp-convert/data"
+	"fgo-go-temp-convert/manage"
+	"fgo-go-temp-convert/models"
 	"fgo-go-temp-convert/utils"
 	"fmt"
 	"os"
@@ -35,11 +38,42 @@ Pilih Menu : `)
 
 	switch (input){
 	case "1":
-		fmt.Printf("Kelvin : %v", calculate.TempConvert("Kelvin", inputTemp))
+		temp := "Kelvin"
+		result := calculate.TempConvert(temp, inputTemp)
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Kelvin : %v\n", result)
+		manage.TempConvertAdd(&data.Temps, models.Temp{
+			Name: temp,
+			Result: float32(result),
+		})
+		fmt.Print("\nPress enter to go back...")
+		reader.ReadString('\n')
+		utils.Clear()
+		return
+		
 	case "2":
-		fmt.Printf("Reamur : %v", calculate.TempConvert("Reamur", inputTemp))
+		temp := "Reamur"
+		result := calculate.TempConvert(temp, inputTemp)
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Reamur : %v\n", result)
+		manage.TempConvertAdd(&data.Temps, models.Temp{
+			Name: temp,
+			Result: float32(result),
+		})
+		fmt.Print("\nPress enter to go back...")
+		reader.ReadString('\n')
+		utils.Clear()
+		return
 	case "3":
-		fmt.Printf("Fahrenheit : %v", calculate.TempConvert("Fahrenheit", inputTemp))
+		temp := "Fahrenheit"
+		result := calculate.TempConvert(temp, inputTemp)
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Fahrenheit : %v\n", result)
+		manage.TempConvertAdd(&data.Temps, models.Temp{
+			Name: temp,
+			Result: float32(result),
+		})
+		fmt.Print("\nPress enter to go back...")
+		reader.ReadString('\n')
+		utils.Clear()
+		return
 	case "0":
 		utils.Clear()
 		return
@@ -48,6 +82,13 @@ Pilih Menu : `)
 	}
 }
 
-func handleConvert(){
-
-}
+// func handleConvert(temp string, result string){
+// 	fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n", temp, result)
+// 		manage.TempConvertAdd(&data.Temps, models.Temp{
+// 			Name: temp,
+// 			Result: float32(result),
+// 		})
+// 		fmt.Print("\nPress enter to go back...")
+// 		reader.ReadString('\n')
+// 		utils.Clear()
+// }
