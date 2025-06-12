@@ -30,7 +30,7 @@ Pilih Menu : `)
 	fmt.Print("Nilai Suhu : ")
 	inputValue, _ := reader.ReadString('\n')
 	inputValue = strings.TrimSpace(inputValue)
-	inputTemp, err := strconv.ParseFloat(inputValue, 64)
+	inputTemp, err := strconv.ParseFloat(inputValue, 32)
 	if err != nil {
 		fmt.Println("Error: Konversi gagal. Pastikan input adalah angka yang valid.")
 		return
@@ -40,11 +40,9 @@ Pilih Menu : `)
 	case "1":
 		temp := "Kelvin"
 		result := calculate.TempConvert(temp, inputTemp)
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Kelvin : %v\n", result)
-		manage.TempConvertAdd(&data.Temps, models.Temp{
-			Name: temp,
-			Result: float32(result),
-		})
+		convertTemp := models.Temp{Name: temp, Result: float32(result)}
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
+		manage.TempConvertAdd(&data.Temps, convertTemp)
 		fmt.Print("\nPress enter to go back...")
 		reader.ReadString('\n')
 		utils.Clear()
@@ -53,11 +51,9 @@ Pilih Menu : `)
 	case "2":
 		temp := "Reamur"
 		result := calculate.TempConvert(temp, inputTemp)
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Reamur : %v\n", result)
-		manage.TempConvertAdd(&data.Temps, models.Temp{
-			Name: temp,
-			Result: float32(result),
-		})
+		convertTemp := models.Temp{Name: temp, Result: float32(result)}
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
+		manage.TempConvertAdd(&data.Temps, convertTemp)
 		fmt.Print("\nPress enter to go back...")
 		reader.ReadString('\n')
 		utils.Clear()
@@ -65,11 +61,9 @@ Pilih Menu : `)
 	case "3":
 		temp := "Fahrenheit"
 		result := calculate.TempConvert(temp, inputTemp)
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke Fahrenheit : %v\n", result)
-		manage.TempConvertAdd(&data.Temps, models.Temp{
-			Name: temp,
-			Result: float32(result),
-		})
+		convertTemp := models.Temp{Name: temp, Result: float32(result)}
+		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
+		manage.TempConvertAdd(&data.Temps, convertTemp)
 		fmt.Print("\nPress enter to go back...")
 		reader.ReadString('\n')
 		utils.Clear()
