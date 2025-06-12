@@ -2,7 +2,7 @@ package models
 
 type Temp struct{
 	Name string
-	Result float32
+	Result float64
 }
 
 type Temps []Temp

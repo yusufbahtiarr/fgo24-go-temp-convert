@@ -38,36 +38,17 @@ Pilih Menu : `)
 
 	switch (input){
 	case "1":
-		temp := "Kelvin"
-		result := calculate.TempConvert(temp, inputTemp)
-		convertTemp := models.Temp{Name: temp, Result: float32(result)}
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
-		manage.TempConvertAdd(&data.Temps, convertTemp)
-		fmt.Print("\nPress enter to go back...")
-		reader.ReadString('\n')
-		utils.Clear()
-		return
+		handleConvert("Kelvin", calculate.TempConvert("Kelvin", inputTemp), reader)
+    return
 		
 	case "2":
-		temp := "Reamur"
-		result := calculate.TempConvert(temp, inputTemp)
-		convertTemp := models.Temp{Name: temp, Result: float32(result)}
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
-		manage.TempConvertAdd(&data.Temps, convertTemp)
-		fmt.Print("\nPress enter to go back...")
-		reader.ReadString('\n')
-		utils.Clear()
-		return
+		handleConvert("Reamur", calculate.TempConvert("Reamur", inputTemp), reader)
+    return
+
 	case "3":
-		temp := "Fahrenheit"
-		result := calculate.TempConvert(temp, inputTemp)
-		convertTemp := models.Temp{Name: temp, Result: float32(result)}
-		fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n",temp, result)
-		manage.TempConvertAdd(&data.Temps, convertTemp)
-		fmt.Print("\nPress enter to go back...")
-		reader.ReadString('\n')
-		utils.Clear()
-		return
+		handleConvert("Fahrenheit", calculate.TempConvert("Fahrenheit", inputTemp), reader)
+    return
+
 	case "0":
 		utils.Clear()
 		return
@@ -76,13 +57,13 @@ Pilih Menu : `)
 	}
 }
 
-// func handleConvert(temp string, result string){
-// 	fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n", temp, result)
-// 		manage.TempConvertAdd(&data.Temps, models.Temp{
-// 			Name: temp,
-// 			Result: float32(result),
-// 		})
-// 		fmt.Print("\nPress enter to go back...")
-// 		reader.ReadString('\n')
-// 		utils.Clear()
-// }
+func handleConvert(temp string, result float64, reader *bufio.Reader){
+	fmt.Printf("Hasil Konversi Suhu dari Celcius ke %s : %v\n", temp, result)
+		manage.TempConvertAdd(&data.Temps, models.Temp{
+			Name: temp,
+			Result: result,
+		})
+		fmt.Print("\nPress enter to go back...")
+		reader.ReadString('\n')
+		utils.Clear()
+}

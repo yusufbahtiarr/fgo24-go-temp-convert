@@ -33,8 +33,10 @@ case "1":
 case "2":
 	utils.Clear()
 	services.ConvertTemp()
-default:
+case "0":
 	os.Exit(0)
+default:
+	utils.Clear()
 }
 }
 
